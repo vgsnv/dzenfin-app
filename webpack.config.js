@@ -3,6 +3,11 @@ const webpack = require('webpack');
 const buildPath = path.resolve(__dirname, 'dist');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractLess = new ExtractTextPlugin({
+  filename: "[name].css",
+});
 
 module.exports = {
   entry: './src/index.tsx',
@@ -13,7 +18,8 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       { from: path.resolve(__dirname, 'src/index.html'), to: buildPath },
-    ])
+    ]),
+    extractLess
   ],
   module: {
     rules: [
@@ -26,6 +32,22 @@ module.exports = {
         exclude: [
           path.resolve(__dirname, "node_modules")
         ]
+      },
+      {
+        test: /\.less$/,
+        use: extractLess.extract({
+          use: [{
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              namedExport: 'camelCase',
+              camelCase: true
+            }
+          },
+          {
+            loader: "less-loader"
+          }],
+        })
       }
     ]
   },

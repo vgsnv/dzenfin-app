@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
+import * as css from './styles.less'
+
+import Logo from 'components/Logo';
+import Menu from 'components/Menu';
+
 export interface Props {
 }
 
@@ -14,10 +19,10 @@ export class Header extends React.Component<Props & Dispatch, State>{
 
   render() {
     return (
-      <header>
-        <Link to={`/`}>
-          Header
-        </Link>
+      <header
+      className={css.header}>
+        <Logo />
+        <Menu />
       </header>
     );
   }
