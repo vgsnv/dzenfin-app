@@ -9,8 +9,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import Header from 'components/Header';
-import Home from 'views/Home';
+import App from 'views/App';
 
 const loggerMiddleware = createLogger();
 
@@ -21,19 +20,6 @@ const reducers = (state, action) => {
 const store = createStore(
   reducers,
   applyMiddleware(thunk, loggerMiddleware),
-);
-
-const Main = () => (
-  <Switch>
-    <Route exact path='/' component={Home} />
-  </Switch>
-);
-
-const App = () => (
-  <div>
-    <Header />
-    <Main />
-  </div>
 );
 
 ReactDOM.render((
