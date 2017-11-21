@@ -20,9 +20,10 @@ export class Header extends React.Component<Props & Dispatch, State>{
   render() {
     return (
       <header
-      className={css.header}>
-        <Logo />
-        <Menu />
+        className={css.header}
+      >
+          <Logo />
+          <Menu />
       </header>
     );
   }
