@@ -9,6 +9,10 @@ const extractLess = new ExtractTextPlugin({
   filename: "[name].css",
 });
 
+const watchIgnorePlugin = new webpack.WatchIgnorePlugin([
+  /less\.d\.ts$/
+]);
+
 module.exports = {
   entry: './src/index.tsx',
   output: {
@@ -19,7 +23,10 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: path.resolve(__dirname, 'src/index.html'), to: buildPath },
       { from: path.resolve(__dirname, 'src/cssreset.css'), to: buildPath },
+      { from: path.resolve(__dirname, 'node_modules/react/umd/react.production.min.js'), to: path.resolve(buildPath, 'vendor')},
+      { from: path.resolve(__dirname, 'node_modules/react-dom/umd/react-dom.production.min.js'), to: path.resolve(buildPath, 'vendor') },
     ]),
+    watchIgnorePlugin,
     extractLess
   ],
   module: {
@@ -60,5 +67,9 @@ module.exports = {
       api: path.resolve(__dirname, 'src/api/'),
     },
     extensions: [".ts", ".tsx", ".js", ".json"]
+  },
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
   },
 }
