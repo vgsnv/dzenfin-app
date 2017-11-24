@@ -5,7 +5,8 @@ import { Calendar, Props, Dispatch} from './Calendar';
 
 type MapStateToProps = Props;
 
-const mapStateToProps = (): MapStateToProps => ({
+const mapStateToProps = ({budgets}): MapStateToProps => ({
+  budgets
 });
 
 type MapDispatchToProps = Dispatch;
