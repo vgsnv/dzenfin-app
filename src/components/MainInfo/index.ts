@@ -1,1 +1,2 @@
-export { default as Container } from './Container';
+import  Container  from './Container';
+export  default Container

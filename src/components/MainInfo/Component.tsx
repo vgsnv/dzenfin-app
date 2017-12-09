@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import * as ui from 'ui';
 
 import * as css from './styles.less'
 
@@ -16,11 +17,11 @@ export class Component extends React.Component<Props & Dispatch, State>{
 
   render() {
     return (
-      <div
+      <ui.Row
         className={css.blank}
       >
         Blank
-      </div>
+      </ui.Row>
     );
   }
 };
