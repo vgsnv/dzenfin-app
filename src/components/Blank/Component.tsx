@@ -12,7 +12,7 @@ export interface Dispatch {
 export interface State {
 }
 
-export class Blank extends React.Component<Props & Dispatch, State>{
+export class Component extends React.Component<Props & Dispatch, State>{
 
   render() {
     return (
