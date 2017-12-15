@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "baseUrl": "src",
-    "jsx": "react"
+    "jsx": "react",
+    "lib": ["es2017", "dom"]
   },
   "include": [
     "src/**/*"
