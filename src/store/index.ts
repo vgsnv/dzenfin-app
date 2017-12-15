@@ -14,7 +14,7 @@ const store = createStore(
   }),
   applyMiddleware(
     thunk,
-    loggerMiddleware
+    loggerMiddleware,
   ),
 );
 

@@ -6,6 +6,9 @@ import Calendar from 'components/Calendar';
 import MainInfo from 'components/MainInfo';
 import Home from 'views/Home';
 
+import {getBids} from '.././api/getBudget'
+
+getBids({month: 10, year: 2017})
 
 const Main = () => (
   <Switch>
