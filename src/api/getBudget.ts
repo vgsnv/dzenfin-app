@@ -5,11 +5,6 @@
 
 const timeout = ms => new Promise((res, rej) => setTimeout(() => rej(new Error('timeout')), ms));
 
-let queryString = [
-  `month=${10}`,
-  `year=${2017}`,
-].join('&');
-
 export const TIMEOUT = 50000;
 
 const headers = new Headers({
@@ -17,51 +12,46 @@ const headers = new Headers({
   'Content-Type': 'application/json'
 });
 
-const login = () => {
+const login = async () => {
 
-  return fetch(`/dzenapi/login`, {
+  return await fetch(`/dzenapi/login`, {
     method: 'POST',
     credentials: "same-origin",
     headers,
     body: JSON.stringify({ login: 'f@f.ru', pass: 'f' })
   })
-    .then(response => {
-
-      let res = response.json();
-      console.log('login res', res);
-      return res;
-    })
-    .catch(err2 => console.log('login err', err2))
+    .then(res => res.json())
+    .catch(err => console.log('login err', err))
 };
 
-const dzenapp = (data) => {
+const dzenapp = async (data) => {
 
-  console.log('dzenapp data', data)
+  let queryString = [
+    `month=${10}`,
+    `year=${2017}`,
+  ].join('&');
 
-  return fetch(`/dzenapi/dzenapp?${queryString}`, {
+  return await fetch(`/dzenapi/dzenapp?${queryString}`, {
     method: 'GET',
     credentials: "same-origin",
     headers,
-    // body: JSON.stringify(data)
   })
-    .then(response => {
-
-      // let res = response.json();
-      // console.log('dzenapp', res);
-      return response;
-    })
+    .then(response => response.json())
     .catch(err => console.log('dzenapp err', err))
+};
+
+const loginDzenApp = async (data) => {
+  await login();
+  let b = await dzenapp(data);
+  console.log('b', b)
+  return b
 };
 
 export const getBids = async (data) => {
 
   return await Promise.race([
     timeout(TIMEOUT),
-    login()
-      .then(() => dzenapp(data))
-        .then(_=> console.log('dzenapp msg', _))
-        .catch(err => console.log('dzenapp err', err)
-      )
+    await loginDzenApp(data)
   ]);
 
 }

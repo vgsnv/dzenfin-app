@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import App from 'views/App';
+import Views from 'views';
 
 import store from 'store';
 
@@ -14,7 +14,7 @@ ReactDOM.render((
 
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <Views />
     </BrowserRouter>
   </Provider>
 
