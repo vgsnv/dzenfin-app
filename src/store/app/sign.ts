@@ -1,9 +1,11 @@
 const LOGIN_UPDATE = 'APP/LOGIN_UPDATE';
 const PASS_UPDATE = 'APP/PASS_UPDATE';
+const USEREMAIL_UPD = 'APP/USEREMAIL_UPD';
 
 export interface Sign {
   readonly login: string;
   readonly pass: string;
+  readonly userEmail: string;
 };
 
 export const loginUpdate = (data: string) => ({
@@ -16,7 +18,12 @@ export const passUpdate = (data: string) => ({
   data: data
 });
 
-const defaultSign: Sign = { login: '', pass: '' };
+export const userEmailUpdate = (data: string) => ({
+  type: USEREMAIL_UPD,
+  data: data
+});
+
+const defaultSign: Sign = { login: '', pass: '', userEmail: null };
 
 export default (sign: Sign = defaultSign, action) => {
 
@@ -25,6 +32,8 @@ export default (sign: Sign = defaultSign, action) => {
       return { ...sign, ...{ login: action.data } };
     case PASS_UPDATE:
       return { ...sign, ...{ pass: action.data } };
+    case USEREMAIL_UPD:
+      return { ...sign, ...{ userEmail: action.data } };
     default:
       return sign;
   }

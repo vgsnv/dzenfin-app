@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import * as css from './styles.less';
 
 import * as ui from 'ui';
@@ -7,11 +7,13 @@ import * as ui from 'ui';
 export interface Props {
   login: string;
   pass: string;
+  loggedIn: boolean;
 }
 
 export interface Dispatch {
   loginUpdate: (login: string) => void;
   passUpdate: (pass: string) => void;
+  sendLogin: (login: string, pass: string) => void;
 }
 
 export interface State {
@@ -24,8 +26,10 @@ export class Component extends React.Component<Props & Dispatch, State>{
     const {
       login,
       pass,
+      loggedIn,
       loginUpdate,
-      passUpdate
+      passUpdate,
+      sendLogin,
     } = this.props;
 
     const inputPass = {
@@ -35,9 +39,15 @@ export class Component extends React.Component<Props & Dispatch, State>{
 
     const submitBtn = {
       title: 'Войти',
-      onClick: () => console.log(),
+      onClick: () => sendLogin(login, pass),
       type: ui.ButtonType.ENABLED,
     };
+
+    if (loggedIn) {
+      return (
+        <Redirect to={'/'} />
+      )
+    }
 
     return (
       <div>
