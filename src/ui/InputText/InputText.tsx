@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as css from './InputText.less';
 
 interface Props {
+  label: string;
   maxLength?: number;
   value: string;
   onChange?: (value: string, auto?: boolean) => void;
@@ -21,16 +22,20 @@ export default class InputText extends React.Component<Props, State> {
   render() {
 
     const {
+      label,
       value,
       onChange
     } = this.props;
 
     return (
-      <input
-        className={css.customInput}
-        type="text"
-        value={value}
-        onChange={(event) => this.handleInputChange(event)} />
+      <div>
+        <p>{label}</p>
+        <input
+          className={css.customInput}
+          type="text"
+          value={value}
+          onChange={(event) => this.handleInputChange(event)} />
+      </div>
     );
 
   };
