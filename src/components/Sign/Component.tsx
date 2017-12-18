@@ -8,6 +8,7 @@ export interface Props {
   login: string;
   pass: string;
   loggedIn: boolean;
+  failLogin: number;
 }
 
 export interface Dispatch {
@@ -31,11 +32,6 @@ export class Component extends React.Component<Props & Dispatch, State>{
       passUpdate,
       sendLogin,
     } = this.props;
-
-    const inputPass = {
-      value: '',
-      onChange: (val) => console.log('Click', val)
-    };
 
     const submitBtn = {
       title: 'Войти',
