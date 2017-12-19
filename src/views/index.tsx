@@ -6,7 +6,7 @@ import Sign from 'views/Sign';
 
 export default () => (
   <Switch>
-    <Route exact path='/' component={Dzenapp} />
+    <Route  path='/months/:year/:month' component={Dzenapp} />
     <Route path='/sign' component={Sign} />
   </Switch>
 );
