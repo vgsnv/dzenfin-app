@@ -1,9 +1,13 @@
+import { TIMEOUT } from '../config';
+
+const timeout = ms => new Promise((res, rej) => setTimeout(() => rej(new Error('timeout')), ms));
+
 const headers = new Headers({
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 });
 
-export default async (login, pass) => {
+export const login = async (login, pass) => {
 
   return await fetch(`/dzenapi/login`, {
     method: 'POST',
@@ -15,5 +19,13 @@ export default async (login, pass) => {
     })
   })
     .then(res => res.json());
-    
+
 };
+
+export default async (l, p) => {
+
+  return await Promise.race([
+    timeout(TIMEOUT),
+    await login(l, p)
+  ]);
+}

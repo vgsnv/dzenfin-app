@@ -1,7 +1,7 @@
-import  * as d from 'api/getBudget';
+import dzenapp from 'api/dzenapp';
 import login from 'api/login';
 
 export {
-  d,
+  dzenapp,
   login,
 };

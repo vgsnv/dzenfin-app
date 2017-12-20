@@ -41,7 +41,7 @@ export class Component extends React.Component<Props & Dispatch, State>{
 
     if (loggedIn) {
       return (
-        <Redirect to={'/'} />
+        <Redirect to={'months/2017/11'} />
       )
     }
 

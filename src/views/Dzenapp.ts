@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { getBids } from '.././api/getBudget'
+import * as api from 'api'
 
-getBids({ month: 10, year: 2017 })
-
-import { Component, Props, Dispatch} from 'components/Dzenapp/Component';
+import { Component, Props, Dispatch } from 'components/Dzenapp/Component';
 
 type MapStateToProps = Props;
 
@@ -13,7 +11,12 @@ const mapStateToProps = (): MapStateToProps => ({});
 
 type MapDispatchToProps = Dispatch;
 
-const mapDispatchToProps = (dispatch): MapDispatchToProps =>({
+const getFetch = (year, month) => dispatch => {
+  api.dzenapp(year, month)
+}
+
+const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
+  getFetch: (year, month) => dispatch(getFetch(year, month))
 })
 
-export default connect<MapStateToProps, MapDispatchToProps, {} >(mapStateToProps, mapDispatchToProps)(Component);
+export default connect<MapStateToProps, MapDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Component);
