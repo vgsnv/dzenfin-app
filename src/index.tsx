@@ -9,6 +9,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Views from 'views';
 
 import store from 'store';
+import { loginUpdate, passUpdate, loggedInEmailUpdate, loginSuccess, loginFail } from 'store/app/sign';
+
+import * as api from 'api';
+
+api.getuserinfo()
+  .then((res) => store.dispatch(loginSuccess({ login: res.login, isTemp: res.isTemp })))
+  .catch((err) => store.dispatch(loginFail()));
 
 ReactDOM.render((
 
