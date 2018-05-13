@@ -13,6 +13,8 @@ export interface Props {
 
 export interface Dispatch {
   nextSign: (history) => void;
+  nextRegister: (history) => void;
+  nextDemoApp: (history) => void;
 }
 
 export interface State {
@@ -33,14 +35,14 @@ class Component extends React.Component<any, any>{
     }
 
     const registerBtn = {
-      title: 'Регистрация',
-      onClick: () => { this.props.nextSign(history) },
+      title: 'Выйти',
+      onClick: () => this.props.nextRegister(history),
       type: ui.ButtonType.ENABLED,
     };
 
     const loginDemoBtn = {
-      title: 'Создать бюджет',
-      onClick: () => { },
+      title: 'Попробовать',
+      onClick: () => this.props.nextDemoApp(history),
       type: ui.ButtonType.ENABLED,
     };
 
@@ -73,18 +75,65 @@ type MapDispatchToProps = Dispatch;
 
 const nextSign = (history) => (dispatch) => {
   api.getuserinfo()
-    .then((res) => {
-      history.push('/months/2017/11');
-      dispatch(loginSuccess({ login: res.login, isTemp: res.isTemp }));
+    .then((msg) => {
+      if (msg.status === 'success') {
+        history.push('/months/2017/11');
+        let body = msg.body;
+        dispatch(loginSuccess({ login: body.login, isTemp: body.isTemp }));
+      } else {
+        history.push('/sign');
+        dispatch(loginFail())
+      }
     })
     .catch((err) => {
-      history.push('/sign');
+      console.log('bad', err);
+    });
+}
+
+const nextRegister = (history) => (dispatch) => {
+  api.logout()
+    .then((msg) => {
+      history.push('/');
       dispatch(loginFail())
+    })
+    .catch((err) => {
+      // history.push('/sign');
+      console.log('hello')
+      dispatch(loginFail())
+    });
+}
+
+const nextDemoApp = (history) => (dispatch) => {
+  api.getuserinfo()
+    .then((msg) => {
+      if (msg.status === 'success') {
+        history.push('/months/2017/11');
+        let body = msg.body;
+        dispatch(loginSuccess({ login: body.login, isTemp: body.isTemp }));
+      } else {
+        api.getdemouser()
+          .then((msg) => {
+            if (msg.status === 'success') {
+              history.push('/months/2017/11');
+              let body = msg.body;
+              dispatch(loginSuccess({ login: body.login, isTemp: body.isTemp }));
+            } 
+          })
+          .catch((err) => {
+            // history.push('/sign');
+            dispatch(loginFail())
+          });
+      }
+    })
+    .catch((err) => {
+      console.log('bad', err);
     });
 }
 
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
   nextSign: history => dispatch(nextSign(history)),
+  nextRegister: history => dispatch(nextRegister(history)),
+  nextDemoApp: history => dispatch(nextDemoApp(history)),
 })
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Component);

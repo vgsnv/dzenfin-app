@@ -9,15 +9,15 @@ const headers = new Headers({
 
 export const query = async () => {
 
-  return await fetch(`/dzenapi/getdemouser`, {
-    method: 'GET',
+  return await fetch(`/dzenapi/logout`, {
+    method: 'POST',
     credentials: "same-origin",
     headers,
+  })    
+  .then(res => {
+    if (res.ok) return res.json();
+    throw new Error('logout failed');
   })
-    .then(res => {
-      if (res.ok) return res.json();
-      throw new Error('logout failed');
-    })
 
 };
 

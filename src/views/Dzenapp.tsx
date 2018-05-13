@@ -36,10 +36,10 @@ export default class extends React.Component<any, any>{
 
     console.log('params', year, month);
 
-    getFetch(year, month);
-    let a = api.dzenapp(year, month);
+    // getFetch(year, month);
+    // let a = api.dzenapp(year, month);
 
-    console.info('a', a)
+    // console.info('a', a)
     
   }
 

@@ -34,7 +34,7 @@ export class Component extends React.Component<Props & Dispatch, State>{
       getFetch
     } = this.props;
 
-    getFetch(year, month);
+    // getFetch(year, month);
 
     return (
       <div>

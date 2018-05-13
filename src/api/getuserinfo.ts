@@ -7,6 +7,11 @@ const headers = new Headers({
   'Content-Type': 'application/json'
 });
 
+export interface Propsis {
+  login?: string;
+  isTemp: boolean;
+}
+
 export const query = async () => {
 
   return await fetch(`/dzenapi/getuserinfo`, {
@@ -14,12 +19,13 @@ export const query = async () => {
     credentials: "same-origin",
     headers,
   })
-    .then(res => res.json());
-
+    .then(res => {
+      if (res.ok) return res.json();
+      throw new Error('userinfo failed');
+    })
 };
 
 export default async () => {
-
   return await Promise.race([
     timeout(TIMEOUT),
     await query()
