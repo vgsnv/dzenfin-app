@@ -5,7 +5,7 @@ import Sign from 'components/Sign';
 
 export default () => (
   <main
-    className={css.sign}
+    className={css.main}
   >
     <Sign />
   </main>
