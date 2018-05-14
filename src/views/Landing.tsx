@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from 'react-redux';
 
-import { loginSuccess, loginFail } from 'store/app/sign';
+import { loginSuccess, loginFail } from 'store/app/userinfo';
 
 import * as css from './styles.less';
 import * as ui from 'ui';
@@ -79,7 +79,7 @@ const nextSign = (history) => (dispatch) => {
       if (msg.status === 'success') {
         history.push('/months/2017/11');
         let body = msg.body;
-        dispatch(loginSuccess({ login: body.login, isTemp: body.isTemp }));
+        dispatch(loginSuccess({ userLogin: body.userLogin, isTemp: body.isTemp }));
       } else {
         history.push('/sign');
         dispatch(loginFail())
@@ -109,14 +109,14 @@ const nextDemoApp = (history) => (dispatch) => {
       if (msg.status === 'success') {
         history.push('/months/2017/11');
         let body = msg.body;
-        dispatch(loginSuccess({ login: body.login, isTemp: body.isTemp }));
+        dispatch(loginSuccess({ userLogin: body.userLogin, isTemp: body.isTemp }));
       } else {
         api.getdemouser()
           .then((msg) => {
             if (msg.status === 'success') {
               history.push('/months/2017/11');
               let body = msg.body;
-              dispatch(loginSuccess({ login: body.login, isTemp: body.isTemp }));
+              dispatch(loginSuccess({ userLogin: body.userLogin, isTemp: body.isTemp }));
             } 
           })
           .catch((err) => {
