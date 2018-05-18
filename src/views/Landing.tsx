@@ -15,6 +15,7 @@ export interface Dispatch {
   nextSign: (history) => void;
   nextRegister: (history) => void;
   nextDemoApp: (history) => void;
+  nextLogout: (history) => void;
 }
 
 export interface State {
@@ -35,7 +36,7 @@ class Component extends React.Component<any, any>{
     }
 
     const registerBtn = {
-      title: 'Выйти',
+      title: 'Регистрация',
       onClick: () => this.props.nextRegister(history),
       type: ui.ButtonType.ENABLED,
     };
@@ -46,9 +47,15 @@ class Component extends React.Component<any, any>{
       type: ui.ButtonType.ENABLED,
     };
 
+    const logoutBtn = {
+      title: 'Выйти',
+      onClick: () => this.props.nextLogout(history),
+      type: ui.ButtonType.ENABLED,
+    };
+
     return (
-      <main
-        className={css.main}
+      <article
+        className={css.mainBody}
       >
         <ui.Row>
           <h1>Landing</h1>
@@ -62,7 +69,10 @@ class Component extends React.Component<any, any>{
         <ui.Row>
           <ui.Button {...loginDemoBtn} />
         </ui.Row>
-      </main>
+        <ui.Row>
+          <ui.Button {...logoutBtn} />
+        </ui.Row>
+      </article>
     );
   }
 };
@@ -91,16 +101,7 @@ const nextSign = (history) => (dispatch) => {
 }
 
 const nextRegister = (history) => (dispatch) => {
-  api.logout()
-    .then((msg) => {
-      history.push('/');
-      dispatch(loginFail())
-    })
-    .catch((err) => {
-      // history.push('/sign');
-      console.log('hello')
-      dispatch(loginFail())
-    });
+  history.push('/register');
 }
 
 const nextDemoApp = (history) => (dispatch) => {
@@ -113,14 +114,15 @@ const nextDemoApp = (history) => (dispatch) => {
       } else {
         api.getdemouser()
           .then((msg) => {
+            console.log('msg')
             if (msg.status === 'success') {
               history.push('/months/2017/11');
               let body = msg.body;
               dispatch(loginSuccess({ userLogin: body.userLogin, isTemp: body.isTemp }));
-            } 
+            }
           })
           .catch((err) => {
-            // history.push('/sign');
+            history.push('/sign');
             dispatch(loginFail())
           });
       }
@@ -130,10 +132,25 @@ const nextDemoApp = (history) => (dispatch) => {
     });
 }
 
+const nextLogout = (history) => (dispatch) => {
+  api.logout()
+    .then((msg) => {
+      history.push('/');
+      dispatch(loginFail())
+    })
+    .catch((err) => {
+      // history.push('/sign');
+      console.log('hello')
+      dispatch(loginFail())
+    });
+}
+
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
   nextSign: history => dispatch(nextSign(history)),
   nextRegister: history => dispatch(nextRegister(history)),
   nextDemoApp: history => dispatch(nextDemoApp(history)),
+  nextLogout: history => dispatch(nextLogout(history)),
+
 })
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Component);

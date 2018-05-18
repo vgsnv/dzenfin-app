@@ -1,7 +1,7 @@
 // import * as React from 'react';
 // import { connect } from 'react-redux';
 
-import * as api from 'api'
+import * as api from 'api';
 
 // import { Component, Props, Dispatch } from 'components/Dzenapp/Component';
 
@@ -22,15 +22,15 @@ const getFetch = (year, month) => dispatch => {
 // export default connect<MapStateToProps, MapDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Component);
 
 import * as React from "react";
+import * as css from './styles.less';
 
-import Header from 'components/Header';
 import Calendar from 'components/Calendar';
 import MainInfo from 'components/MainInfo';
 
 // export default () => (
 export default class extends React.Component<any, any>{
 
-  componentDidMount(){
+  componentDidMount() {
 
     const { match: { params: { year, month } } } = this.props;
 
@@ -40,17 +40,18 @@ export default class extends React.Component<any, any>{
     // let a = api.dzenapp(year, month);
 
     // console.info('a', a)
-    
+
   }
 
   render() {
 
     return (
-      <main>
-        <Header />
+      <article
+        className={css.mainBody}
+      >
         <Calendar />
         <MainInfo />
-      </main>
+      </article>
     )
   }
 };
