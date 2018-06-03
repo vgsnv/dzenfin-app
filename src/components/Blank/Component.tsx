@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-
 import * as css from './styles.less'
+
+import * as ui from 'ui';
 
 export interface Props {
 }
