@@ -1,13 +1,11 @@
 import * as React from "react";
-import * as css from './styles.less';
+import * as css from "./styles.less";
 
-import Header from 'components/Header';
-import Sign from 'components/Sign';
+import Header from "components/Header";
+import Sign from "components/Sign";
 
 export default () => (
-  <article
-    className={css.mainBody}
-  >
+  <article className={css.mainBody}>
     <Sign />
   </article>
 );

@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import budgets from './budgets';
+import { combineReducers } from "redux";
+import budgets from "./budgets";
 
 const db = combineReducers({
-  budgets,
+  budgets
 });
 
 export default db;

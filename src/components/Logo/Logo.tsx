@@ -1,24 +1,18 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import { Link } from "react-router-dom";
 
-export interface Props {
-}
+export interface Props {}
 
-export interface Dispatch {
-}
+export interface Dispatch {}
 
-export interface State {
-}
+export interface State {}
 
-export default class extends React.Component<Props & Dispatch, State>{
-
+export default class extends React.Component<Props & Dispatch, State> {
   render() {
     return (
       <div>
-        <Link to={`/`}>
-          DZENFIN
-        </Link>
+        <Link to={`/`}>DZENFIN</Link>
       </div>
     );
   }
-};
+}

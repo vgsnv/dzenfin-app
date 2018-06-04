@@ -1,7 +1,7 @@
 // import * as React from 'react';
 // import { connect } from 'react-redux';
 
-import * as api from 'api';
+import * as api from "api";
 
 // import { Component, Props, Dispatch } from 'components/Dzenapp/Component';
 
@@ -13,7 +13,7 @@ import * as api from 'api';
 
 const getFetch = (year, month) => dispatch => {
   api.dzenapp(year, month);
-}
+};
 
 // const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
 //   getFetch: (year, month) => dispatch(getFetch(year, month))
@@ -22,36 +22,34 @@ const getFetch = (year, month) => dispatch => {
 // export default connect<MapStateToProps, MapDispatchToProps, {}>(mapStateToProps, mapDispatchToProps)(Component);
 
 import * as React from "react";
-import * as css from './styles.less';
+import * as css from "./styles.less";
 
-import Calendar from 'components/Calendar';
-import MainInfo from 'components/MainInfo';
+import Calendar from "components/Calendar";
+import MainInfo from "components/MainInfo";
 
 // export default () => (
-export default class extends React.Component<any, any>{
-
+export default class extends React.Component<any, any> {
   componentDidMount() {
+    const {
+      match: {
+        params: { year, month }
+      }
+    } = this.props;
 
-    const { match: { params: { year, month } } } = this.props;
-
-    console.log('params', year, month);
+    console.log("params", year, month);
 
     // getFetch(year, month);
     // let a = api.dzenapp(year, month);
 
     // console.info('a', a)
-
   }
 
   render() {
-
     return (
-      <article
-        className={css.mainBody}
-      >
+      <article className={css.mainBody}>
         <Calendar />
         <MainInfo />
       </article>
-    )
+    );
   }
-};
+}

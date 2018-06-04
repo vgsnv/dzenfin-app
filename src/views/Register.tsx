@@ -1,12 +1,10 @@
 import * as React from "react";
-import * as css from './styles.less';
+import * as css from "./styles.less";
 
-import Register from 'components/Register';
+import Register from "components/Register";
 
 export default () => (
-  <article
-    className={css.mainBody}
-  >
-    <Register/>
+  <article className={css.mainBody}>
+    <Register />
   </article>
 );

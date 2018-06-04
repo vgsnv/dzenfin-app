@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Redirect } from 'react-router-dom';
-import * as css from './styles.less';
+import * as React from "react";
+import { Redirect } from "react-router-dom";
+import * as css from "./styles.less";
 
-import * as ui from 'ui';
+import * as ui from "ui";
 
 export interface Props {
   login: string;
@@ -17,32 +17,27 @@ export interface Dispatch {
   sendLogin: (login: string, pass: string) => void;
 }
 
-export interface State {
-}
+export interface State {}
 
-export class Component extends React.Component<Props & Dispatch, State>{
-
+export class Component extends React.Component<Props & Dispatch, State> {
   render() {
-
     const {
       login,
       pass,
       loggedIn,
       loginUpdate,
       passUpdate,
-      sendLogin,
+      sendLogin
     } = this.props;
 
     const submitBtn = {
-      title: 'Войти',
+      title: "Войти",
       onClick: () => sendLogin(login, pass),
-      type: ui.ButtonType.ENABLED,
+      type: ui.ButtonType.ENABLED
     };
 
     if (loggedIn) {
-      return (
-        <Redirect to={'months/2017/11'} />
-      )
+      return <Redirect to={"months/2017/11"} />;
     }
 
     return (
@@ -55,14 +50,14 @@ export class Component extends React.Component<Props & Dispatch, State>{
           <ui.InputText
             label={`Email`}
             value={login}
-            onChange={(v) => loginUpdate(v)}
+            onChange={v => loginUpdate(v)}
           />
         </ui.Row>
         <ui.Row>
           <ui.InputText
             label={`Пароль`}
             value={pass}
-            onChange={(v) => passUpdate(v)}
+            onChange={v => passUpdate(v)}
           />
         </ui.Row>
         <ui.Row>
@@ -71,4 +66,4 @@ export class Component extends React.Component<Props & Dispatch, State>{
       </div>
     );
   }
-};
+}

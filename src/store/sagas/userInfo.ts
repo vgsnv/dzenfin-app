@@ -17,7 +17,7 @@ export function* fetchUserInfoAsync(action) {
   const history = action.data.history;
   try {
     const data = yield call(getuserinfo);
-    console.log('data', data)
+    console.log("data", data);
     yield put({ type: REQUESTED_SUCCEEDED, data });
     yield call(history.push, "/months/2017/11");
   } catch (error) {

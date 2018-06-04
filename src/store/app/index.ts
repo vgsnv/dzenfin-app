@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import sign from 'store/app/sign';
-import userinfo from 'store/app/userinfo';
+import { combineReducers } from "redux";
+import sign from "store/app/sign";
+import userinfo from "store/app/userinfo";
 
 const app = combineReducers({
   sign,
-  userinfo,
+  userinfo
 });
 
 export default app;

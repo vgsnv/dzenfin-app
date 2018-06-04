@@ -1,26 +1,16 @@
-import * as React from 'react';
-import * as css from './styles.less'
+import * as React from "react";
+import * as css from "./styles.less";
 
-import * as ui from 'ui';
+import * as ui from "ui";
 
-export interface Props {
-}
+export interface Props {}
 
-export interface Dispatch {
-}
+export interface Dispatch {}
 
-export interface State {
-}
+export interface State {}
 
-export class Component extends React.Component<Props & Dispatch, State>{
-
+export class Component extends React.Component<Props & Dispatch, State> {
   render() {
-    return (
-      <div
-        className={css.blank}
-      >
-        Blank
-      </div>
-    );
+    return <div className={css.blank}>Blank</div>;
   }
-};
+}
