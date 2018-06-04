@@ -1,53 +1,71 @@
-const LOGIN_SUCCESS = 'APP/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'APP/LOGIN_FAIL';
+import { BorderBlockEndColorProperty } from "csstype";
+
+export const REQUESTED_LOGIN = "APP/REQUESTED_LOGIN";
+export const REQUESTED_SUCCEEDED = "APP/REQUESTED_SUCCEEDED";
+export const REQUESTED_FAILED = "APP/REQUESTED_FAILED";
 
 export interface Userinfo {
-  readonly userLogin: string;
+  readonly login: string;
   readonly isTemp: boolean;
   readonly failLogin: number;
-};
+  readonly url: string;
+  readonly loading: boolean;
+  readonly error: boolean;
+}
 
-interface LoginSuccess {
-  userLogin: string;
-  isTemp: boolean;
-};
-
-export const loginSuccess = (data: LoginSuccess) => ({
-  type: LOGIN_SUCCESS,
-  data: data
+export const requestLogin = data => ({
+  type: REQUESTED_LOGIN,
+  data
 });
 
-export const loginFail = () => ({
-  type: LOGIN_FAIL
+export const requestLoginSuccess = data => ({
+  type: REQUESTED_SUCCEEDED,
+  data
+});
+
+export const requestLoginError = () => ({
+  type: REQUESTED_FAILED
 });
 
 const defaultUserinfo: Userinfo = {
-  userLogin: '',
+  login: "",
   isTemp: true,
   failLogin: 0,
+  url: "",
+  loading: false,
+  error: false
 };
 
-export default (prevUserinfo: Userinfo = defaultUserinfo, action) => {
-
+export default (prevUserinfo = defaultUserinfo, action) => {
   switch (action.type) {
-    case LOGIN_SUCCESS:
+    case REQUESTED_LOGIN:
       return {
-        ...prevUserinfo, ...{
-          userLogin: action.data.userLogin,
-          isTemp: action.data.isTemp,
-          failLogin: 0,
+        ...prevUserinfo,
+        ...{
+          url: "",
+          loading: true,
+          error: false
         }
       };
-    case LOGIN_FAIL:
-      return { 
-        ...prevUserinfo, ...{  
-          userLogin: null,
-          isTemp: null,
-          failLogin: prevUserinfo.failLogin + 1,
-        } 
+    case REQUESTED_SUCCEEDED:
+      return {
+        login: action.data.body.login,
+        isTemp: action.data.body.isTemp,
+        failLogin: 0,
+        url: action.url,
+        loading: false,
+        error: false
+      };
+    case REQUESTED_FAILED:
+      return {
+        login: null,
+        isTemp: null,
+        failLogin: prevUserinfo.failLogin + 1,
+        url: "",
+        loading: false,
+        error: true
       };
     default:
       return prevUserinfo;
   }
-
-}
+};

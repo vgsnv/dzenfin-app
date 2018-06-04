@@ -21,6 +21,7 @@
     "@types/react": "^16.0.18",
     "@types/react-dom": "^16.0.2",
     "@types/react-redux": "^6.0.0",
+    "@types/redux-logger": "^3.0.6",
     "awesome-typescript-loader": "^3.2.3",
     "copy-webpack-plugin": "^4.2.0",
     "react": "^16.0.0",
@@ -38,6 +39,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
     "typings-for-css-modules-loader": "^1.7.0"
   }
