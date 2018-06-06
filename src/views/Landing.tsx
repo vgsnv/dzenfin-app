@@ -1,14 +1,15 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
+import * as api from "api";
+
 import { sign } from "store/sagas/sign";
 import { logout } from "store/sagas/logout";
 import { register } from "store/sagas/register";
+import { demo } from "store/sagas/demo";
 
 import * as css from "./styles.less";
 import * as ui from "ui";
-
-import * as api from "api";
 
 export interface Props {}
 
@@ -77,38 +78,10 @@ const mapStateToProps = (): MapStateToProps => ({});
 
 type MapDispatchToProps = Dispatch;
 
-const nextDemoApp = history => dispatch => {
-  // api.getuserinfo()
-  //   .then((msg) => {
-  //     if (msg.status === 'success') {
-  //       history.push('/months/2017/11');
-  //       let body = msg.body;
-  //       dispatch(loginSuccess({ userLogin: body.userLogin, isTemp: body.isTemp }));
-  //     } else {
-  //       api.getdemouser()
-  //         .then((msg) => {
-  //           console.log('msg')
-  //           if (msg.status === 'success') {
-  //             history.push('/months/2017/11');
-  //             let body = msg.body;
-  //             dispatch(loginSuccess({ userLogin: body.userLogin, isTemp: body.isTemp }));
-  //           }
-  //         })
-  //         .catch((err) => {
-  //           history.push('/sign');
-  //           dispatch(loginFail())
-  //         });
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log('bad', err);
-  //   });
-};
-
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
   nextSign: history => dispatch(sign({ history })),
   nextRegister: history => dispatch(register({ history })),
-  nextDemoApp: history => dispatch(nextDemoApp(history)),
+  nextDemoApp: history => dispatch(demo({ history })),
   nextLogout: history => dispatch(logout({ history }))
 });
 

@@ -1,23 +1,23 @@
 import { delay } from "redux-saga";
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
+import * as api from "api";
+
 import {
   CHECK_SESSION,
   CHECK_SESSION_SUCCEEDED,
   CHECK_SESSION_FAILED
 } from "store/app/session";
 
-import * as api from "api";
+export const DEMO = "SAGA/DEMO";
 
-export const SIGN = "SAGA/SIGN";
-
-export const sign = data => ({
-  type: SIGN,
+export const demo = data => ({
+  type: DEMO,
   data
 });
 
 export default function* watcher() {
-  yield takeEvery(SIGN, worker);
+  yield takeEvery(DEMO, worker);
 }
 
 export function* worker(action) {
@@ -29,8 +29,14 @@ export function* worker(action) {
       yield put({ type: CHECK_SESSION_SUCCEEDED, data: res });
       yield call(history.push, "/months/2017/11");
     } else {
-      yield put({ type: CHECK_SESSION_FAILED });
-      yield call(history.push, "/sign");
+      const demoUser = yield call(api.createdemouser);
+      if (demoUser.success) {
+        yield put({ type: CHECK_SESSION_SUCCEEDED, data: demoUser });
+        yield call(history.push, "/months/2017/11");
+      } else {
+        yield put({ type: CHECK_SESSION_FAILED });
+        yield call(history.push, "/sign");
+      }
     }
   } catch (error) {
     yield put({ type: CHECK_SESSION_FAILED, error });

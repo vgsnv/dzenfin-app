@@ -9,7 +9,7 @@ const headers = new Headers({
 });
 
 export const query = async () => {
-  return await fetch(`/dzenapi/getdemouser`, {
+  return await fetch(`/dzenapi/createdemouser`, {
     method: "GET",
     credentials: "same-origin",
     headers
