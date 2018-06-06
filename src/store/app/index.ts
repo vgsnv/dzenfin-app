@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import sign from "store/app/sign";
-import userinfo from "store/app/userinfo";
+import session from "store/app/session";
 
 const app = combineReducers({
   sign,
-  userinfo
+  session
 });
 
 export default app;

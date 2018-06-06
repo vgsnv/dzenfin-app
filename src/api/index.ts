@@ -1,7 +1,7 @@
 import dzenapp from "api/dzenapp";
 import login from "api/login";
-import getuserinfo from "api/getuserinfo";
+import getsession from "api/getsession";
 import getdemouser from "api/getdemouser";
 import logout from "api/logout";
 
-export { dzenapp, login, getuserinfo, getdemouser, logout };
+export { dzenapp, login, getsession, getdemouser, logout };

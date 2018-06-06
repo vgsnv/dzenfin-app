@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { requestLogin } from "store/app/userinfo";
+import { requestSession, sessionReset } from "store/app/session";
 
 import * as css from "./styles.less";
 import * as ui from "ui";
@@ -75,23 +75,6 @@ const mapStateToProps = (): MapStateToProps => ({});
 
 type MapDispatchToProps = Dispatch;
 
-const nextSign = history => dispatch => {
-  // api.getuserinfo()
-  //   .then((msg) => {
-  //     if (msg.status === 'success') {
-  //       history.push('/months/2017/11');
-  //       let body = msg.body;
-  //       dispatch(loginSuccess({ userLogin: body.userLogin, isTemp: body.isTemp }));
-  //     } else {
-  //       history.push('/sign');
-  //       dispatch(loginFail())
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log('bad', err);
-  //   });
-};
-
 const nextRegister = history => dispatch => {
   history.push("/register");
 };
@@ -124,24 +107,11 @@ const nextDemoApp = history => dispatch => {
   //   });
 };
 
-const nextLogout = history => dispatch => {
-  // api.logout()
-  //   .then((msg) => {
-  //     history.push('/');
-  //     dispatch(loginFail())
-  //   })
-  //   .catch((err) => {
-  //     // history.push('/sign');
-  //     console.log('hello')
-  //     dispatch(loginFail())
-  //   });
-};
-
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
-  nextSign: history => dispatch(requestLogin({ history: history })),
+  nextSign: history => dispatch(requestSession({ history: history })),
   nextRegister: history => dispatch(nextRegister(history)),
   nextDemoApp: history => dispatch(nextDemoApp(history)),
-  nextLogout: history => dispatch(nextLogout(history))
+  nextLogout: history => dispatch(sessionReset({ history: history }))
 });
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(

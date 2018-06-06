@@ -1,5 +1,6 @@
-import watchFetchUserInfo from "./userInfo";
+import session from "./session";
+import userLogout from "./userLogout";
 
 export default function* rootSaga() {
-  yield [watchFetchUserInfo()];
+  yield [session(), userLogout()];
 }
