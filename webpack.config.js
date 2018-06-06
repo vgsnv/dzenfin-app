@@ -73,7 +73,8 @@ module.exports = {
       ui: path.resolve(__dirname, "src/ui/"),
       store: path.resolve(__dirname, "src/store/"),
       views: path.resolve(__dirname, "src/views/"),
-      api: path.resolve(__dirname, "src/api/")
+      api: path.resolve(__dirname, "src/api/"),
+      config: path.resolve(__dirname, "src/config.ts")
     },
     extensions: [".ts", ".tsx", ".js", ".json"]
   },

@@ -1,6 +1,6 @@
-import session from "./session";
-import userLogout from "./userLogout";
+import sign from "./sign";
+import logout from "./logout";
 
 export default function* rootSaga() {
-  yield [session(), userLogout()];
+  yield [sign(), logout()];
 }

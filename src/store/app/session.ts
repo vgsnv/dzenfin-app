@@ -1,6 +1,6 @@
-export const REQUESTED_SESSION = "APP/REQUESTED_SESSION";
-export const REQUESTED_SESSION_SUCCEEDED = "APP/REQUESTED_SESSION_SUCCEEDED";
-export const REQUESTED_SESSION_FAILED = "APP/REQUESTED_SESSION_FAILED";
+export const CHECK_SESSION = "APP/CHECK_SESSION";
+export const CHECK_SESSION_SUCCEEDED = "APP/CHECK_SESSION_SUCCEEDED";
+export const CHECK_SESSION_FAILED = "APP/CHECK_SESSION_FAILED";
 export const SESSION_RESET = "APP/SESSION_RESET";
 
 export interface Session {
@@ -12,18 +12,18 @@ export interface Session {
   readonly error: boolean;
 }
 
-export const requestSession = data => ({
-  type: REQUESTED_SESSION,
+export const checkSession = data => ({
+  type: CHECK_SESSION,
   data
 });
 
-export const requestSessionSuccess = data => ({
-  type: REQUESTED_SESSION_SUCCEEDED,
+export const checkSessionSuccess = data => ({
+  type: CHECK_SESSION_SUCCEEDED,
   data
 });
 
-export const requestSessionError = () => ({
-  type: REQUESTED_SESSION_FAILED
+export const checkSessionError = () => ({
+  type: CHECK_SESSION_FAILED
 });
 
 export const sessionReset = data => ({
@@ -32,8 +32,8 @@ export const sessionReset = data => ({
 });
 
 const defaultSession: Session = {
-  login: "",
-  isTemp: true,
+  login: null,
+  isTemp: null,
   failLogin: 0,
   url: "",
   loading: false,
@@ -42,7 +42,7 @@ const defaultSession: Session = {
 
 export default (prevSession = defaultSession, action) => {
   switch (action.type) {
-    case REQUESTED_SESSION:
+    case CHECK_SESSION:
       return {
         ...prevSession,
         ...{
@@ -51,7 +51,7 @@ export default (prevSession = defaultSession, action) => {
           error: false
         }
       };
-    case REQUESTED_SESSION_SUCCEEDED:
+    case CHECK_SESSION_SUCCEEDED:
       return {
         login: action.data.body.login,
         isTemp: action.data.body.isTemp,
@@ -60,14 +60,12 @@ export default (prevSession = defaultSession, action) => {
         loading: false,
         error: false
       };
-    case REQUESTED_SESSION_FAILED:
+    case CHECK_SESSION_FAILED:
       return {
-        login: null,
-        isTemp: null,
-        failLogin: prevSession.failLogin + 1,
-        url: "",
-        loading: false,
-        error: true
+        ...defaultSession,
+        ...{
+          error: true
+        }
       };
     case SESSION_RESET:
       return defaultSession;

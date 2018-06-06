@@ -1,4 +1,4 @@
-import { TIMEOUT } from "../config";
+import { TIMEOUT } from "config";
 
 const timeout = ms =>
   new Promise((res, rej) => setTimeout(() => rej(new Error("timeout")), ms));
@@ -14,7 +14,7 @@ export interface Propsis {
 }
 
 export const query = async () => {
-  return await fetch(`/dzenapi/getuserinfo`, {
+  return await fetch(`/dzenapi/checksession`, {
     method: "GET",
     credentials: "same-origin",
     headers

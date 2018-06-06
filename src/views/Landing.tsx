@@ -1,7 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { requestSession, sessionReset } from "store/app/session";
+import { sign } from "store/sagas/sign";
+import { logout } from "store/sagas/logout";
 
 import * as css from "./styles.less";
 import * as ui from "ui";
@@ -108,10 +109,10 @@ const nextDemoApp = history => dispatch => {
 };
 
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
-  nextSign: history => dispatch(requestSession({ history: history })),
+  nextSign: history => dispatch(sign({ history })),
   nextRegister: history => dispatch(nextRegister(history)),
   nextDemoApp: history => dispatch(nextDemoApp(history)),
-  nextLogout: history => dispatch(sessionReset({ history: history }))
+  nextLogout: history => dispatch(logout({ history }))
 });
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(
