@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { sign } from "store/sagas/sign";
 import { logout } from "store/sagas/logout";
+import { register } from "store/sagas/register";
 
 import * as css from "./styles.less";
 import * as ui from "ui";
@@ -76,10 +77,6 @@ const mapStateToProps = (): MapStateToProps => ({});
 
 type MapDispatchToProps = Dispatch;
 
-const nextRegister = history => dispatch => {
-  history.push("/register");
-};
-
 const nextDemoApp = history => dispatch => {
   // api.getuserinfo()
   //   .then((msg) => {
@@ -110,7 +107,7 @@ const nextDemoApp = history => dispatch => {
 
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
   nextSign: history => dispatch(sign({ history })),
-  nextRegister: history => dispatch(nextRegister(history)),
+  nextRegister: history => dispatch(register({ history })),
   nextDemoApp: history => dispatch(nextDemoApp(history)),
   nextLogout: history => dispatch(logout({ history }))
 });
