@@ -1,21 +1,21 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Views from 'views';
+import Views from "views";
 
-import store from 'store';
+import store from "store";
 
-ReactDOM.render((
-
+ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Views />
     </BrowserRouter>
-  </Provider>
+  </Provider>,
 
-), document.getElementById('root'));
+  document.getElementById("root")
+);

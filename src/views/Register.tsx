@@ -1,11 +1,10 @@
 import * as React from "react";
 import * as css from "./styles.less";
 
-import Header from "components/Header";
-import Sign from "components/Sign";
+import Register from "components/Register";
 
 export default () => (
   <article className={css.mainBody}>
-    <Sign />
+    <Register />
   </article>
 );

@@ -1,30 +1,24 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import { Link } from "react-router-dom";
 
-import * as css from './styles.less'
+import * as css from "./styles.less";
 
-import Logo from 'components/Logo';
-import Menu from 'components/Menu';
+import Logo from "components/Logo";
+import Menu from "components/Menu";
 
-export interface Props {
-}
+export interface Props {}
 
-export interface Dispatch {
-}
+export interface Dispatch {}
 
-export interface State {
-}
+export interface State {}
 
-export class Header extends React.Component<Props & Dispatch, State>{
-
+export class Header extends React.Component<Props & Dispatch, State> {
   render() {
     return (
-      <header
-        className={css.header}
-      >
-          <Logo />
-          <Menu />
+      <header className={css.header}>
+        <Logo />
+        <Menu />
       </header>
     );
   }
-};
+}
