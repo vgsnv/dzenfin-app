@@ -1,11 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import * as api from "api";
-
 import { sign } from "store/sagas/sign";
 import { logout } from "store/sagas/logout";
-import { register } from "store/sagas/register";
+import { nextRegister } from "store/sagas/nextRegister";
 import { demo } from "store/sagas/demo";
 
 import * as css from "./styles.less";
@@ -14,39 +12,37 @@ import * as ui from "ui";
 export interface Props {}
 
 export interface Dispatch {
-  nextSign: (history) => void;
-  nextRegister: (history) => void;
-  nextDemoApp: (history) => void;
-  nextLogout: (history) => void;
+  nextSign: () => void;
+  nextRegister: () => void;
+  nextDemoApp: () => void;
+  nextLogout: () => void;
 }
 
 export interface State {}
 
-class Component extends React.Component<any, any> {
+class Component extends React.Component<Props & Dispatch, State> {
   render() {
-    const { history } = this.props;
-
     const loginBtn = {
       title: "Войти",
-      onClick: () => this.props.nextSign(history),
+      onClick: () => this.props.nextSign(),
       type: ui.ButtonType.ENABLED
     };
 
     const registerBtn = {
       title: "Регистрация",
-      onClick: () => this.props.nextRegister(history),
+      onClick: () => this.props.nextRegister(),
       type: ui.ButtonType.ENABLED
     };
 
     const loginDemoBtn = {
       title: "Попробовать",
-      onClick: () => this.props.nextDemoApp(history),
+      onClick: () => this.props.nextDemoApp(),
       type: ui.ButtonType.ENABLED
     };
 
     const logoutBtn = {
       title: "Выйти",
-      onClick: () => this.props.nextLogout(history),
+      onClick: () => this.props.nextLogout(),
       type: ui.ButtonType.ENABLED
     };
 
@@ -79,10 +75,10 @@ const mapStateToProps = (): MapStateToProps => ({});
 type MapDispatchToProps = Dispatch;
 
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
-  nextSign: history => dispatch(sign({ history })),
-  nextRegister: history => dispatch(register({ history })),
-  nextDemoApp: history => dispatch(demo({ history })),
-  nextLogout: history => dispatch(logout({ history }))
+  nextSign: () => dispatch(sign()),
+  nextRegister: () => dispatch(nextRegister()),
+  nextDemoApp: () => dispatch(demo()),
+  nextLogout: () => dispatch(logout())
 });
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(
