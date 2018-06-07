@@ -5,7 +5,9 @@ import * as ui from "ui";
 
 export interface Props {}
 
-export interface Dispatch {}
+export interface Dispatch {
+  register: () => void;
+}
 
 export interface State {
   email: string;
@@ -43,16 +45,21 @@ export class Component extends React.Component<Props & Dispatch, State> {
   };
 
   onSubmitRegister = () => {
-    if (this.state.pass !== "" && this.state.pass === this.state.rpass) {
-      console.log("good");
-    } else {
-      console.log("bad");
-    }
+    // if (this.state.pass !== "" && this.state.pass === this.state.rpass) {
+    //   console.log("good");
+    this.props.register();
+    // } else {
+    //   console.log("bad");
+    // }
   };
 
   render() {
+    // const { history } = this.props;
+
+    console.log("register this.props", this.props);
+
     const btnSubmit = {
-      onClick: this.onSubmitRegister,
+      onClick: () => this.props.register(),
       title: `Create`,
       type: ui.ButtonType.ENABLED
     };
