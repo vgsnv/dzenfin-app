@@ -1,7 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 
-import thunk from "redux-thunk";
-
 import createSagaMiddleware from "redux-saga";
 
 import sagas from "./sagas";
@@ -20,7 +18,7 @@ const store = createStore(
     app,
     db
   }),
-  applyMiddleware(thunk, sagaMiddleware, loggerMiddleware)
+  applyMiddleware(sagaMiddleware, loggerMiddleware)
 );
 
 sagaMiddleware.run(sagas);
