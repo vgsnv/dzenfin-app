@@ -1,9 +1,10 @@
-import sign from "./sign";
+import inSign from "./inSign";
+import inManagment from "./inManagment";
 import logout from "./logout";
-import nextRegister from "./nextRegister";
+import inRegister from "./inRegister";
 import demo from "./demo";
 import register from "./register";
 
 export default function* rootSaga() {
-  yield [sign(), logout(), nextRegister(), demo(), register()];
+  yield [inSign(), logout(), inRegister(), demo(), register(), inManagment()];
 }

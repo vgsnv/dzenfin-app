@@ -14,7 +14,7 @@ export interface Props {
 export interface Dispatch {
   loginUpdate: (login: string) => void;
   passUpdate: (pass: string) => void;
-  sendLogin: (login: string, pass: string) => void;
+  inManagment: () => void;
 }
 
 export interface State {}
@@ -27,18 +27,14 @@ export class Component extends React.Component<Props & Dispatch, State> {
       loggedIn,
       loginUpdate,
       passUpdate,
-      sendLogin
+      inManagment
     } = this.props;
 
     const submitBtn = {
       title: "Войти",
-      onClick: () => sendLogin(login, pass),
+      onClick: () => inManagment(),
       type: ui.ButtonType.ENABLED
     };
-
-    if (loggedIn) {
-      return <Redirect to={"months/2017/11"} />;
-    }
 
     return (
       <div>

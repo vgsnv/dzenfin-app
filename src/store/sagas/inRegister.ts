@@ -2,14 +2,14 @@ import { call, takeLatest } from "redux-saga/effects";
 
 import history from "apphistory";
 
-export const NEXT_REGISTER = "SAGA/NEXT_REGISTER";
+export const IN_REGISTER = "SAGA/IN_REGISTER";
 
-export const nextRegister = () => ({
-  type: NEXT_REGISTER
+export const inRegister = () => ({
+  type: IN_REGISTER
 });
 
 export default function* watcher() {
-  yield takeLatest(NEXT_REGISTER, worker);
+  yield takeLatest(IN_REGISTER, worker);
 }
 
 export function* worker(action) {

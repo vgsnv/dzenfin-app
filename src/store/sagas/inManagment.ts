@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest, select } from "redux-saga/effects";
 
 import {
   CHECK_SESSION,
@@ -10,20 +10,30 @@ import * as api from "api";
 
 import history from "apphistory";
 
-export const SIGN = "SAGA/SIGN";
+export const IN_MANAGMENT = "SAGA/IN_MANAGMENT";
 
-export const sign = () => ({
-  type: SIGN
+export const inManagment = () => ({
+  type: IN_MANAGMENT
 });
 
 export default function* watcher() {
-  yield takeLatest(SIGN, worker);
+  yield takeLatest(IN_MANAGMENT, worker);
 }
 
 export function* worker(action) {
   try {
     yield put({ type: CHECK_SESSION });
-    const res = yield call(api.checksession);
+
+    const state = yield select(state => state);
+
+    const {
+      app: {
+        sign: { login, pass }
+      }
+    } = state;
+
+    const res = yield call(api.createsession, login, pass);
+
     if (res.success) {
       yield put({ type: CHECK_SESSION_SUCCEEDED, data: res });
       yield call(history.push, { pathname: "/months/2017/11" });

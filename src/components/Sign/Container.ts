@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import * as api from "api";
+import { inManagment } from "store/sagas/inManagment";
 
 import { Component, Props, Dispatch } from "./Component";
 
@@ -24,20 +24,10 @@ const mapStateToProps = ({ app }): MapStateToProps => ({
 
 type MapDispatchToProps = Dispatch;
 
-const sendLogin = (login, pass) => dispatch => {
-  console.log("login", login, pass);
-  api
-    .login(login, pass)
-    .then(res =>
-      dispatch(loginSuccess({ login: res.login, isTemp: res.isTemp }))
-    )
-    .catch(err => dispatch(loginFail()));
-};
-
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
   loginUpdate: login => dispatch(loginUpdate(login)),
   passUpdate: pass => dispatch(passUpdate(pass)),
-  sendLogin: (login, pass) => dispatch(sendLogin(login, pass))
+  inManagment: () => dispatch(inManagment())
 });
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(
