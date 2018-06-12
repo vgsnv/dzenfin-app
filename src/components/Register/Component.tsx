@@ -3,63 +3,35 @@ import * as css from "./styles.less";
 
 import * as ui from "ui";
 
-export interface Props {}
-
-export interface Dispatch {
-  register: () => void;
-}
-
-export interface State {
+export interface Props {
   email: string;
   pass: string;
   rpass: string;
 }
 
+export interface Dispatch {
+  emailUpdate: (email: string) => void;
+  passUpdate: (pass: string) => void;
+  rpassUpdate: (rpass: string) => void;
+  onSubmit: () => void;
+}
+
+export interface State {}
+
 export class Component extends React.Component<Props & Dispatch, State> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      pass: "",
-      rpass: ""
-    };
-  }
-
-  emailUpd = v => {
-    this.setState({
-      email: v
-    });
-  };
-
-  passUpd = v => {
-    this.setState({
-      pass: v
-    });
-  };
-
-  rpassUpd = v => {
-    this.setState({
-      rpass: v
-    });
-  };
-
-  onSubmitRegister = () => {
-    // if (this.state.pass !== "" && this.state.pass === this.state.rpass) {
-    //   console.log("good");
-    this.props.register();
-    // } else {
-    //   console.log("bad");
-    // }
-  };
-
   render() {
-    // const { history } = this.props;
-
-    console.log("register this.props", this.props);
+    const {
+      email,
+      pass,
+      rpass,
+      emailUpdate,
+      passUpdate,
+      rpassUpdate,
+      onSubmit
+    } = this.props;
 
     const btnSubmit = {
-      onClick: () => this.props.register(),
+      onClick: () => onSubmit(),
       title: `Create`,
       type: ui.ButtonType.ENABLED
     };
@@ -73,22 +45,22 @@ export class Component extends React.Component<Props & Dispatch, State> {
         <ui.Row>
           <ui.InputText
             label={`Email`}
-            value={this.state.email}
-            onChange={v => this.emailUpd(v)}
+            value={email}
+            onChange={v => emailUpdate(v)}
           />
         </ui.Row>
         <ui.Row>
           <ui.InputText
             label={`Пароль`}
-            value={this.state.pass}
-            onChange={v => this.passUpd(v)}
+            value={pass}
+            onChange={v => passUpdate(v)}
           />
         </ui.Row>
         <ui.Row>
           <ui.InputText
             label={`Подтверждение`}
-            value={this.state.rpass}
-            onChange={v => this.rpassUpd(v)}
+            value={rpass}
+            onChange={v => rpassUpdate(v)}
           />
         </ui.Row>
         <ui.Row>

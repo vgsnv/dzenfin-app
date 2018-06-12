@@ -7,7 +7,6 @@ import * as ui from "ui";
 export interface Props {
   login: string;
   pass: string;
-  loggedIn: boolean;
   failLogin: number;
 }
 
@@ -21,14 +20,7 @@ export interface State {}
 
 export class Component extends React.Component<Props & Dispatch, State> {
   render() {
-    const {
-      login,
-      pass,
-      loggedIn,
-      loginUpdate,
-      passUpdate,
-      inManagment
-    } = this.props;
+    const { login, pass, loginUpdate, passUpdate, inManagment } = this.props;
 
     const submitBtn = {
       title: "Войти",

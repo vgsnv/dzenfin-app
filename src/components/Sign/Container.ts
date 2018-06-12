@@ -1,24 +1,16 @@
-import * as React from "react";
 import { connect } from "react-redux";
 
 import { inManagment } from "store/sagas/inManagment";
 
 import { Component, Props, Dispatch } from "./Component";
 
-import {
-  loginUpdate,
-  passUpdate,
-  loggedInEmailUpdate,
-  loginSuccess,
-  loginFail
-} from "store/app/sign";
+import { loginUpdate, passUpdate } from "store/app/forms/sign";
 
 type MapStateToProps = Props;
 
 const mapStateToProps = ({ app }): MapStateToProps => ({
   login: app.sign.login,
   pass: app.sign.pass,
-  loggedIn: !!app.sign.loggedInEmail ? true : false,
   failLogin: app.sign.failLogin
 });
 

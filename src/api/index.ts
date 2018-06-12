@@ -3,7 +3,7 @@ import createsession from "api/createsession";
 import createdemouser from "api/createdemouser";
 import checksession from "api/session/checksession";
 import destroysession from "api/session/destroysession";
-import register from "api/register";
+import createuser from "api/createuser";
 
 export {
   dzenapp,
@@ -11,5 +11,5 @@ export {
   checksession,
   createdemouser,
   destroysession,
-  register
+  createuser
 };
