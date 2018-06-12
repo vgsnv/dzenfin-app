@@ -1,10 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { inSign } from "store/sagas/inSign";
-import { logout } from "store/sagas/logout";
-import { inRegister } from "store/sagas/inRegister";
-import { demo } from "store/sagas/demo";
+import { inSign } from "store/sagas/landing/inSign";
+import { logout } from "store/sagas/managment/logout";
+import { inRegister } from "store/sagas/managment/inRegister";
+import { demo } from "store/sagas/landing/demo";
 
 import * as css from "./styles.less";
 import * as ui from "ui";

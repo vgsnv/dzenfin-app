@@ -1,8 +1,8 @@
-import inSign from "./inSign";
-import inManagment from "./inManagment";
-import logout from "./logout";
-import inRegister from "./inRegister";
-import demo from "./demo";
+import inSign from "./landing/inSign";
+import inManagment from "./sign/inManagment";
+import logout from "./managment/logout";
+import inRegister from "./managment/inRegister";
+import demo from "./landing/demo";
 import registerOnSubmit from "./register/onSubmit";
 
 export default function* rootSaga() {

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { inManagment } from "store/sagas/inManagment";
+import { inManagment } from "store/sagas/sign/inManagment";
 
 import { Component, Props, Dispatch } from "./Component";
 
