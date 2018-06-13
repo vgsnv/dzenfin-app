@@ -2,8 +2,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { inSign } from "store/sagas/landing/inSign";
-import { logout } from "store/sagas/managment/logout";
-import { inRegister } from "store/sagas/managment/inRegister";
 import { demo } from "store/sagas/landing/demo";
 
 import * as css from "./styles.less";
@@ -13,9 +11,7 @@ export interface Props {}
 
 export interface Dispatch {
   inSign: () => void;
-  inRegister: () => void;
   nextDemoApp: () => void;
-  nextLogout: () => void;
 }
 
 export interface State {}
@@ -28,21 +24,9 @@ class Component extends React.Component<Props & Dispatch, State> {
       type: ui.ButtonType.ENABLED
     };
 
-    const registerBtn = {
-      title: "Регистрация",
-      onClick: () => this.props.inRegister(),
-      type: ui.ButtonType.ENABLED
-    };
-
     const loginDemoBtn = {
       title: "Попробовать",
       onClick: () => this.props.nextDemoApp(),
-      type: ui.ButtonType.ENABLED
-    };
-
-    const logoutBtn = {
-      title: "Выйти",
-      onClick: () => this.props.nextLogout(),
       type: ui.ButtonType.ENABLED
     };
 
@@ -54,15 +38,11 @@ class Component extends React.Component<Props & Dispatch, State> {
         <ui.Row>
           <ui.Button {...loginBtn} />
         </ui.Row>
-        <ui.Row>
-          <ui.Button {...registerBtn} />
-        </ui.Row>
+        <ui.Row />
         <ui.Row>
           <ui.Button {...loginDemoBtn} />
         </ui.Row>
-        <ui.Row>
-          <ui.Button {...logoutBtn} />
-        </ui.Row>
+        <ui.Row />
       </article>
     );
   }
@@ -76,9 +56,7 @@ type MapDispatchToProps = Dispatch;
 
 const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
   inSign: () => dispatch(inSign()),
-  inRegister: () => dispatch(inRegister()),
-  nextDemoApp: () => dispatch(demo()),
-  nextLogout: () => dispatch(logout())
+  nextDemoApp: () => dispatch(demo())
 });
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(

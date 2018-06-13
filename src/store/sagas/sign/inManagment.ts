@@ -36,7 +36,7 @@ export function* worker(action) {
 
     if (res.success) {
       yield put({ type: CHECK_SESSION_SUCCEEDED, data: res });
-      yield call(history.push, { pathname: "/months/2017/11" });
+      yield call(history.push, { pathname: "managment" });
     } else {
       yield put({ type: CHECK_SESSION_FAILED });
       yield call(history.push, { pathname: "/sign" });

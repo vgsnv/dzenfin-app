@@ -27,14 +27,14 @@ export function* worker(action) {
     if (res.success) {
       yield put({ type: CHECK_SESSION_SUCCEEDED, data: res });
       yield call(history.push, {
-        pathname: "/months/2017/11"
+        pathname: "managment"
       });
     } else {
       const demoUser = yield call(api.createdemouser);
       if (demoUser.success) {
         yield put({ type: CHECK_SESSION_SUCCEEDED, data: demoUser });
         yield call(history.push, {
-          pathname: "/months/2017/11"
+          pathname: "managment"
         });
       } else {
         yield put({ type: CHECK_SESSION_FAILED });
