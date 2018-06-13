@@ -33,9 +33,6 @@ class Component extends React.Component<Props & Dispatch, State> {
     return (
       <article className={css.mainBody}>
         <ui.Row>
-          <h1>Landing</h1>
-        </ui.Row>
-        <ui.Row>
           <ui.Button {...loginBtn} />
         </ui.Row>
         <ui.Row />

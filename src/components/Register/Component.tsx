@@ -39,10 +39,6 @@ export class Component extends React.Component<Props & Dispatch, State> {
     return (
       <div>
         <ui.Row>
-          <h1>Вход</h1>
-          <h2>Добро пожаловать</h2>
-        </ui.Row>
-        <ui.Row>
           <ui.InputText
             label={`Email`}
             value={email}

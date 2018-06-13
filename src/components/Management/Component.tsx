@@ -28,9 +28,6 @@ export class Component extends React.Component<Props & Dispatch, State> {
     return (
       <article>
         <ui.Row>
-          <h1>Managment</h1>
-        </ui.Row>
-        <ui.Row>
           <ui.Button {...registerBtn} />
         </ui.Row>
         <ui.Row>
