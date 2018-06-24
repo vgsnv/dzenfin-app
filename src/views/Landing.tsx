@@ -7,6 +7,8 @@ import { demo } from "store/sagas/landing/demo";
 import * as css from "./styles.less";
 import * as ui from "ui";
 
+import api from "api";
+
 export interface Props {}
 
 export interface Dispatch {
@@ -18,6 +20,7 @@ export interface State {}
 
 class Component extends React.Component<Props & Dispatch, State> {
   render() {
+    api.getbudgets();
     const loginBtn = {
       title: "Войти",
       onClick: () => this.props.inSign(),
@@ -51,12 +54,15 @@ const mapStateToProps = (): MapStateToProps => ({});
 
 type MapDispatchToProps = Dispatch;
 
-const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
-  inSign: () => dispatch(inSign()),
-  nextDemoApp: () => dispatch(demo())
-});
+// const mapDispatchToProps = (dispatch): MapDispatchToProps => ({
+//   inSign: ,
+//   nextDemoApp: () => dispatch(demo())
+// });
 
 export default connect<MapStateToProps, MapDispatchToProps, {}>(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    inSign,
+    nextDemoApp: demo
+  }
 )(Component);

@@ -4,12 +4,14 @@ import createdemouser from "api/createdemouser";
 import checksession from "api/session/checksession";
 import destroysession from "api/session/destroysession";
 import createuser from "api/createuser";
+import getbudgets from "api/app/getbudgets";
 
-export {
+export default {
   dzenapp,
   createsession,
   checksession,
   createdemouser,
   destroysession,
-  createuser
+  createuser,
+  getbudgets
 };

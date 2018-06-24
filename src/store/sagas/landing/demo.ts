@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 
-import * as api from "api";
+import api from "api";
 
 import history from "apphistory";
 

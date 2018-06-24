@@ -2,7 +2,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 
 import { SESSION_RESET, CHECK_SESSION_FAILED } from "store/app/session";
 
-import * as api from "api";
+import api from "api";
 
 import history from "apphistory";
 

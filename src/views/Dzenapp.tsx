@@ -1,7 +1,7 @@
 // import * as React from 'react';
 // import { connect } from 'react-redux';
 
-import * as api from "api";
+import api from "api";
 
 // import { Component, Props, Dispatch } from 'components/Dzenapp/Component';
 
